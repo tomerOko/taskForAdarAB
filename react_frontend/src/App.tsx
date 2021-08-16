@@ -2,23 +2,51 @@ import './App.css';
 // import AllTests from './components/tests/AllTests';
 import Header from './components/traversy/Header';
 import Tasks from './components/traversy/taskList/Tasks';
-
-
+import ChatBox from './components/chat/chatButton/chatButton'
+import { CSSProperties } from 'react';
 
 function App() {
 
-  const name = 'run any code belong to this function component here'
-  console.log(name)
-
   return (
-    <div className="container" style={{border: '2px solid gray'}}>
-      {/* <AllTests/> */}
-      <Header say="task traker" time="" />
-      <Tasks></Tasks>
+    <div style={outerContainerStyle}>
+    <div className="container" style={innerContainerStyle}>
+      <ChatBox/>
+    </div>
     </div>
   );
 }
 
+const fullScreen:CSSProperties = {
+  width:'100vw',
+  maxWidth:'100%',
+  height:'100vh',
+  maxHeight:'100%',
+}
+
+const innerContainerStyle:CSSProperties = Object.assign({
+  display:'grid',
+  alignItems: 'center',
+  justifyContent: 'center',
+}, fullScreen)
+
+
+const outerContainerStyle:CSSProperties = Object.assign({
+  display:'absolute'
+}, fullScreen)
+
+console.log(innerContainerStyle)
+
+
+
+
+
+
+
+
+
+  //  {/* <AllTests/> */}
+  //     {/* <Header say="task traker" time="" />
+  //     <Tasks></Tasks> */}
 export default App;
 
 //אחרי שמדברים על style

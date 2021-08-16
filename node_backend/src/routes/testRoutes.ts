@@ -6,8 +6,10 @@ const router = express.Router();
 
 router.get('/connection', controller.checkServerConection)
 
-router.post('/strigify', controller.checkStringiyResponse)
+router.post('/a', controller.checkStringiyResponse)
 
-router.get('/asny', controller.checkResponseAsPromis)
+router.get('/async', controller.checkResponseAsPromis)
+
+router.get('/fromdb', controller.checkResponsFromDB)
 
 export default router;

@@ -4,8 +4,8 @@ dotenv.config();
 
 const MYSQL_HOST = process.env.MYSQL_HOST || 'mysql_ab';
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE || 'artbrain_chat';
-const MYSQL_USER = process.env.MYSQL_HOST || 'root';
-const MYSQL_PASS = process.env.MYSQL_HOST || 'artB_root';
+const MYSQL_USER = process.env.MYSQL_HOST || 'artB';
+const MYSQL_PASS = process.env.MYSQL_HOST || 'artB';
 
 const MYSQL = {
     host: MYSQL_HOST,
@@ -14,8 +14,8 @@ const MYSQL = {
     pass: MYSQL_PASS
 };
 
-const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'mysql_ab';
-const SERVER_PORT = process.env.SERVER_PORT || 3306;
+const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
+const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 const SERVER = {
     hostname: SERVER_HOSTNAME,

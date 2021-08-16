@@ -3,7 +3,7 @@ import controller from '../controllers/chatController';
 
 const router = express.Router();
 
-router.post('/create/book', controller.createBook);
+router.post('/create/message', controller.createUserMessage);
 router.get('/get/books', controller.getAllBooks);
 
 export default router;

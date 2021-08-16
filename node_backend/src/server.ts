@@ -6,11 +6,14 @@ import logging from './config/logging';
 import config from './config/config';
 import chatRoutes from './routes/chatRouter'; // לא מבין איך זה עובד כי זה לא מיצא את השם הזה וגם לא מייצא דיפולטיבית
 import testRoutes from './routes/testRoutes'; // לא מבין איך זה עובד כי זה לא מיצא את השם הזה וגם לא מייצא דיפולטיבית
+import cors from 'cors'
+
 
 const app = express()
 const port = 3000
 
 const NAMESPACE = 'Server';
+app.use(cors())
 
 /** Log the request */
 app.use((req:Request, res:Response, next:NextFunction) => {
@@ -31,18 +34,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 /** Rules of our API */
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-
-  if (req.method == 'OPTIONS') {
-      res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-      return res.status(200).json({});
-  }
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
 /** Routes go here */
 app.use('/chat', chatRoutes);
 app.use('/test', testRoutes )

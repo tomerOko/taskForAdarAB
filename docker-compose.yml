@@ -58,3 +58,7 @@ services:
 networks: 
   ernmy_stack:
     driver: bridge
+
+
+
+# sudo chown -R $USER:$(id -gn $USER) ./*
