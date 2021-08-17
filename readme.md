@@ -1,19 +1,28 @@
 # hey! welcome to docker for angular
 
 ## description
-this is a VS Code docker configs to develop react app on a solid, maintainable, docker configuration 
+react chat component with nodeJS and mySql
+
 
 ## installation
-make sure u have docker and its running
+make sure u have docker running
 
 ## runing
-1. clone/download
-2. cd into this project file (if u aren't already here, wich u probably are)
-3. run: sudo docker-compose up -d --build --force-recreate
-4. click Ctrl+shift+p
-5. copy and paste: remote-containers: attach to running container
-6. choose angular_one option
-7. open the commandline in the remote container vs code window
+1. clone/download to linux machine or WSL (for widows users)
+2. cd into this project file (if u aren't already here, wich u are probably)
+3. run: sudo docker-compose up -d
+
+## for testing the component as a user:
+
+
+## for development
+1. open vscode (from linux or WSL) 
+2. click Ctrl+shift+p
+3. copy and paste: remote-containers: attach to running container
+4. choose 'react_frontend'
+5. do 3 again 
+6. this time choose 'node_backend'
+7. to see the main proccess node_backend or react_frontend just run the conmand - pm2 logs 0
 8. run: pm2 status   (so that u can see whats going on)
 9. run: pm2 logs ng  (to watch the 'ng serve' logs)
 10. open the browser on: http://localhost:4200/  ( it might take a minute for angular to compile the project )
