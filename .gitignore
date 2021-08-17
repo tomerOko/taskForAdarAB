@@ -43,3 +43,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# db auto generated keys
+db/mysql_data/server-key.pem
+db/mysql_data/private_key.pem
+db/mysql_data/client-key.pem
+db/mysql_data/ca-key.pem

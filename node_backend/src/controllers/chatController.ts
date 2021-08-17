@@ -28,14 +28,11 @@ const createUserMessage = async (req: Request, res: Response, next: NextFunction
 
     console.log(query)
 
-// insert into Messages (ip_sender, `text`, `name`, email, isAdmin) 
-// values 	(123456789, 'jj', 'ferbers', 'tomeroko2@gmail.com', false),
-// 		(223456789, 'jj', 'ferbers', 'tomeroko2@gmail.com', true);
-//     const checkResponsFromDB = async (req:Request, res: Response)=>{
-//         const connection = await Connect()
-//         const dbData = await Query(connection,"select * from Messages")
-//         console.log(dbData)
-//         res.status(200).send(dbData)
+
+    const connection = await Connect()
+    const dbData = await Query(connection,query)
+    console.log(dbData)
+    res.status(200).send(dbData)
 //     }
 //     //לשנות ל אסינק אוויט
 //     Connect()

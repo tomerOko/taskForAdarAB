@@ -1,0 +1,5 @@
+# db auto generated keys
+mysql_data/server-key.pem
+mysql_data/private_key.pem
+mysql_data/client-key.pem
+mysql_data/ca-key.pem
