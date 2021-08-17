@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, query, Request, Response } from 'express';
 import logging from '../config/logging';
 import { mock_Data } from '../mockData';
-import {Connect, Query} from '../config/mysql'
+import {Query} from '../config/mysql'
 
 const NAMESPACE = 'test';
 
@@ -20,9 +20,7 @@ const checkResponseAsPromis = async (req:Request, res: Response)=>{
 }
 
 const checkResponsFromDB = async (req:Request, res: Response)=>{
-    const connection = await Connect()
-    const dbData = await Query(connection,"select * from Messages")
-    console.log(dbData)
+    const dbData = await Query("select * from Messages")
     res.status(200).send(dbData)
 }
 

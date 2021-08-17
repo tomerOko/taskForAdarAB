@@ -8,25 +8,63 @@ const params = {
     database: config.mysql.database
 };
 
-const Connect = async () :Promise<mysql.Connection>=>{
-    const connection = await mysql.createConnection(params);
-    await connection.connect();
-    return connection
-}
-
-const Query = async (connection: mysql.Connection, query: string) =>
-new Promise((resolve, reject) => {
+const QuerySender = async (connection:mysql.Connection, query: string,) => new Promise((resolve, reject) => {
     connection.query(query, connection, (error, result) => {
         if (error) {
+            connection.end()
             reject(error);
-            return;
         }
         resolve(result);
     });
 });
 
+let connection : mysql.Connection|null;
 
-export { Connect, Query };
+const Query = async (query: string) =>{
+    try {
+        if(!connection || connection.state === 'disconnected'){
+            const newconnection = await mysql.createConnection(params);
+            await newconnection.connect(); 
+            connection=newconnection
+        }         
+    } catch (error) { 
+        try {(connection as mysql.Connection).end()} catch (error) {}
+        connection = null  
+        console.error(error)
+        return null
+    }
+    try {
+        const data = await QuerySender(connection, query)
+        return data   
+    } catch (error) {   
+        console.error(error)
+        return null
+    }
+}
+
+
+const db_connection = mysql.createPool(params);
+
+const QueryAsPool = (query:string) => {
+    return new Promise((resolve, reject) => {
+        db_connection.getConnection( (err, conn) => {
+            if (err) reject(err);
+            console.log('MySQL Connection Established: ', conn.threadId);
+            conn.query(query, (err, results) => {
+              if (err) reject(err);
+              conn.release();
+              resolve(results);
+            });
+        });
+    })
+}
+
+  
+
+
+
+
+export { Query, QueryAsPool };
 
 ///////////////////////
 

@@ -76,7 +76,7 @@ const postMassegeFromUser = async()=>{
     name: null,
     text: 'hay there',
   }
-  const data= await axios.post('http://localhost:3000postMassegeFromUser/create/message', messageObject)
+  const data= await axios.post('http://localhost:3000/postMassegeFromUser/create/message', messageObject)
   console.log(data)
 }
 

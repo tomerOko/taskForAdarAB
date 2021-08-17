@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import logging from '../config/logging';
-import { Connect, Query } from '../config/mysql';
+import { Query } from '../config/mysql';
 import MassegeDB from '../interfaces/message';
 
 const NAMESPACE = 'chat'
@@ -29,8 +29,7 @@ const createUserMessage = async (req: Request, res: Response, next: NextFunction
     console.log(query)
 
 
-    const connection = await Connect()
-    const dbData = await Query(connection,query)
+    const dbData = await Query(query)
     console.log(dbData)
     res.status(200).send(dbData)
 //     }
@@ -68,42 +67,42 @@ const createUserMessage = async (req: Request, res: Response, next: NextFunction
 //         });
 };
 
-const getAllBooks = async (req: Request, res: Response, next: NextFunction) => {
-    logging.info(NAMESPACE, 'Getting all books.');
+// const getAllBooks = async (req: Request, res: Response, next: NextFunction) => {
+//     logging.info(NAMESPACE, 'Getting all books.');
 
-    let query = 'SELECT * FROM books';
+//     let query = 'SELECT * FROM books';
 
-    Connect()
-        .then((connection) => {
-            Query(connection, query)
-                .then((results) => {
-                    logging.info(NAMESPACE, 'Retrieved books: ', results);
+//     Connect()
+//         .then((connection) => {
+//             Query(connection, query)
+//                 .then((results) => {
+//                     logging.info(NAMESPACE, 'Retrieved books: ', results);
 
-                    return res.status(200).json({
-                        results
-                    });
-                })
-                .catch((error) => {
-                    logging.error(NAMESPACE, error.message, error);
+//                     return res.status(200).json({
+//                         results
+//                     });
+//                 })
+//                 .catch((error) => {
+//                     logging.error(NAMESPACE, error.message, error);
 
-                    return res.status(200).json({
-                        message: error.message,
-                        error
-                    });
-                })
-                .finally(() => {
-                    logging.info(NAMESPACE, 'Closing connection.');
-                    connection.end();
-                });
-        })
-        .catch((error) => {
-            logging.error(NAMESPACE, error.message, error);
+//                     return res.status(200).json({
+//                         message: error.message,
+//                         error
+//                     });
+//                 })
+//                 .finally(() => {
+//                     logging.info(NAMESPACE, 'Closing connection.');
+//                     connection.end();
+//                 });
+//         })
+//         .catch((error) => {
+//             logging.error(NAMESPACE, error.message, error);
 
-            return res.status(200).json({
-                message: error.message,
-                error
-            });
-        });
-};
+//             return res.status(200).json({
+//                 message: error.message,
+//                 error
+//             });
+//         });
+// };
 
-export default { createUserMessage, getAllBooks };
+export default { createUserMessage };
